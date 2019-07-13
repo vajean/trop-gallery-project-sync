@@ -1,0 +1,35 @@
+<MainView>:
+	orientation: 'vertical'
+	canvas:
+		Color: 
+			rgba: root.backgroundColor
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	Label:
+		font_size: 40
+		size_hint_y: None
+		height: 60
+		color: root.titleColor
+		text: 'Gallery Project Uploader'
+	BoxLayout:
+		size_hint_y: None
+		height: 40
+		Label:
+			font_size: 12
+			size_hint_y: None
+			height: 60
+			color: root.textColor
+			text: 'select a project folder'
+		Button:
+			background_normal: ''
+			background_color: root.buttonColor
+			color: root.textColor
+			text: 'Browse'
+			on_release: root.browseProjects()
+		Button:
+			background_normal: ''
+			background_color: root.buttonColor
+			color: root.textColor
+			text: 'Upload'
+			on_release: root.browseProjects()
