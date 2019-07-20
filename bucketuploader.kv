@@ -1,4 +1,5 @@
-<MainView>:
+Root:
+	label_small: label_small
 	orientation: 'vertical'
 	canvas:
 		Color: 
@@ -6,30 +7,62 @@
 		Rectangle:
 			pos: self.pos
 			size: self.size
+
 	Label:
 		font_size: 40
 		size_hint_y: None
-		height: 60
+		height: 40
 		color: root.titleColor
-		text: 'Gallery Project Uploader'
+		text: 'gallery project uploader'
+	Label:
+		id: label_small
+		font_size: 12
+		size_hint_y: None
+		height: 50
+		color: root.textColor
+		text: 'select project folder'
 	BoxLayout:
 		size_hint_y: None
 		height: 40
-		Label:
-			font_size: 12
-			size_hint_y: None
-			height: 60
-			color: root.textColor
-			text: 'select a project folder'
 		Button:
 			background_normal: ''
 			background_color: root.buttonColor
 			color: root.textColor
-			text: 'Browse'
-			on_release: root.browseProjects()
+			text: 'browse'
+			on_release: root.show_load()
 		Button:
 			background_normal: ''
 			background_color: root.buttonColor
 			color: root.textColor
-			text: 'Upload'
-			on_release: root.browseProjects()
+			text: 'upload'
+			on_release: root.uploadProject()
+
+<LoadDialog>:
+	
+	BoxLayout:
+		size: root.size
+		pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+
+
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+       
+            Button:
+            	background_normal: ''
+				background_color: root.buttonColor
+				color: root.textColor
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+            	background_normal: ''
+				background_color: root.buttonColor
+				color: root.textColor
+                text: "Load"
+                on_release: root.load(filechooser.path)
