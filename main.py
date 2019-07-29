@@ -9,15 +9,21 @@ from kivy.properties import ListProperty, ObjectProperty
 from kivy.core.window import Window
 from kivy.factory import Factory
 from kivy.uix.filechooser import FileChooserListView
-
 import os
+import subprocess
 
+
+
+path = 'uploader.json'
+gcp_project = 'galerie-test'
+command = subprocess.Popen(['gsutil', 'config', '-e'], stdin = subprocess.PIPE, universal_newlines = True )
+command.stdin.write("{}\n".format(path))
+command.communicate(input=gcp_project)
 
 class LoadDialog(FloatLayout):
 
     def uploadProject(self):
-        print(self.ids.filechooser.ids.layout.ids.scrollview.ids)
-        print(self.ids.filechooser.ids.layout.ids.treeview.ids)
+        pass
     r, g, b, a = 0.99, 0.95, 0.99, 1
 
     load = ObjectProperty(None)
@@ -36,9 +42,10 @@ class MainView(BoxLayout):
     Window.set_title('Project Uploader')
 
     r, g, b, a = 0.99, 0.95, 0.99, 1
-
+    projectPath = ''
     loadfile = ObjectProperty(None)
     label_small = ObjectProperty(None)
+    thumb = ObjectProperty(None)
 
     backgroundColor = ListProperty([r, g, b, a])
     titleColor = ListProperty([r * 0.2, g * 0.2, b * 0.2, a])
@@ -46,8 +53,10 @@ class MainView(BoxLayout):
     buttonPressedColor = ListProperty([r * 0.7, g * 0.7, b * 0.7, a])
     textColor = ListProperty([r * 0.1, g * 0.1, b * 0.1, a])
 
-    def uploadProject(self, *args):
-        pass
+    def uploadProject(self):
+        if self.projectPath == '':
+            pass
+        os.system('gsutil cp -r ' + self.projectPath + ' gs://projects-bucket')
 
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
@@ -57,6 +66,8 @@ class MainView(BoxLayout):
 
     def load(self, path):
         self.label_small.text = path
+        self.projectPath = path
+        self.thumb.source = path + '\\img\\thumb.png'
         self.dismiss_popup()
 
     def dismiss_popup(self):

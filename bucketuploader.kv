@@ -1,5 +1,6 @@
 Root:
 	label_small: label_small
+	thumb: thumb
 	orientation: 'vertical'
 	canvas:
 		Color: 
@@ -7,6 +8,13 @@ Root:
 		Rectangle:
 			pos: self.pos
 			size: self.size
+
+	FloatLayout:
+		Image:
+			id: thumb
+    		source: ''
+    		color: root.backgroundColor
+    		pos_hint: {'x':0, 'center_y': .5}
 
 	Label:
 		font_size: 40
@@ -25,16 +33,25 @@ Root:
 		size_hint_y: None
 		height: 40
 		Button:
+			id: butt
 			background_normal: ''
 			background_color: root.buttonColor
 			color: root.textColor
+			background_down: '#660000'
 			text: 'browse'
+			on_press: butt.background_color = root.buttonPressedColor
+			on_release: butt.background_color = root.buttonColor
 			on_release: root.show_load()
+
 		Button:
+			id: upp
 			background_normal: ''
 			background_color: root.buttonColor
 			color: root.textColor
+			background_down: '#660000'
 			text: 'upload'
+			on_press: upp.background_color = root.buttonPressedColor
+			on_release: upp.background_color = root.buttonColor
 			on_release: root.uploadProject()
 
 <LoadDialog>:
