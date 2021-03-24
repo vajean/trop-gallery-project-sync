@@ -29,7 +29,7 @@ pyOpenSSL==19.0.0
 pyu2f==0.1.4
 requests==2.22.0
 retry-decorator==1.1.0
-rsa==4.0
+rsa==4.1
 six==1.12.0
 SocksiPy-branch==1.1
 urllib3==1.25.3
