@@ -12,7 +12,7 @@ gcs-oauth2-boto-plugin==2.5
 google-apitools==0.5.30
 google-reauth==0.1.0
 gsutil==4.40
-httplib2==0.13.0
+httplib2==0.19.0
 idna==2.8
 Kivy==1.11.1
 Kivy-examples==1.11.1
