@@ -27,7 +27,7 @@ pycparser==2.19
 Pygments==2.7.4
 pyOpenSSL==19.0.0
 pyu2f==0.1.4
-requests==2.22.0
+requests==2.31.0
 retry-decorator==1.1.0
 rsa==4.7
 six==1.12.0
